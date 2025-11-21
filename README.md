@@ -94,15 +94,107 @@ Nach dem Aufbau des ML-Datensatzes wurden erste Visualisierungen erstellt.
 ## 1. Verteilung der Rennpositionen
 ![Positionsverteilung](plot_positions_distribution.png)
 
+**Interpretation:**  
+Die Positionen sind relativ gleichmässig verteilt. Es gibt keine strukturelle Verzerrung und die Daten sind historisch balanciert. Alle Plätze von 1 bis 30 treten regelmässig auf.
+
 ---
 
-## 2. Team Performance
+## 2. Team Performance – Durchschnittliche Rennposition
 ![Team Performance](plot_team_performance.png)
 
+**Interpretation:**  
+TRIDENT, PREMA und ART Grand Prix sind über alle Jahre hinweg klar die stärksten Teams.  
+Teams wie PHM Racing oder Charouz liegen konstant am Ende des Feldes.
+
 ---
 
-## 3. Schnellste Fahrer nach durchschnittlicher Rundenzeit
+## 3. Schnellste Fahrer – Durchschnittliche Rundenzeit
 ![Schnellste Fahrer](plot_best_drivers.png)
+
+**Interpretation:**  
+Die Top-20 Fahrer haben im Schnitt extrem ähnliche Rundentzeiten.  
+Mehrere Fahrer aus kleineren Teams tauchen erstaunlich weit oben auf – das zeigt, dass Talent nicht immer ans Team gekoppelt ist.
+
+---
+
+## 4. Top-Fahrer nach durchschnittlicher Position
+![Driver Avg Position](plot_driver_avg_position.png)
+
+**Interpretation:**  
+Dieser Plot zeigt, wer im Rennen am konstant besten abschneidet.  
+Nur Fahrer mit mind. 5 Starts werden berücksichtigt, um Verzerrungen zu vermeiden.
+
+---
+
+## 5. Team-DNF-Rate
+![Team DNF Rate](plot_team_dnf_rate.png)
+
+**Interpretation:**  
+Einige Teams (z. B. Charouz, PHM) fallen durch hohe Ausfallraten auf.  
+Teams mit niedrigen DNF-Werten profitieren klar in der Gesamtwertung.
+
+---
+
+## 6. Fahrer-Konstanz (Varianz der Rennpositionen)
+![Driver Consistency](plot_driver_consistency.png)
+
+**Interpretation:**  
+Fahrer mit niedriger Varianz sind besonders konstant.  
+Eine tiefe Varianz bedeutet: der Fahrer liefert nahezu immer dieselbe Leistung ab – unabhängig vom Rennen.
+
+---
+
+## 7. Fahrerentwicklung über die Zeit
+![Driver Development](plot_driver_development.png)
+
+**Interpretation:**  
+Der Plot zeigt das Leistungsniveau eines ausgewählten Fahrers pro Jahr.  
+Trends wie Verbesserung, Stagnation oder Einbrüche werden sichtbar.
+
+---
+
+## 8. Team-Performance über die Jahre
+![Team Performance Over Time](plot_team_performance_over_time.png)
+
+**Interpretation:**  
+Dieser Plot zeigt Trends in der Teamleistung.  
+Man erkennt, welche Teams über Jahre dominieren und welche sich verbessern oder verschlechtern.
+
+---
+
+## 9. Team-Positions-Boxplot
+![Team Position Boxplot](plot_team_position_boxplot.png)
+
+**Interpretation:**  
+Boxplots zeigen die Verteilung der Rennpositionen pro Team.  
+Man sieht sofort, welche Teams stabil vorne sind und welche stark schwanken.
+
+---
+
+## 10. Fahrer vs Team – Beste Leistung
+![Driver vs Team Best](plot_driver_vs_team_best.png)
+
+**Interpretation:**  
+Hier sieht man die Fahrer, die ihr Team regelmässig “überperformen”.  
+Ein Fahrer mit viel besserer Pace als das Team kann ein zukünftiges F2/F1-Talent sein.
+
+---
+
+## 11. Fahrer vs Team – Schlechteste Leistung
+![Driver vs Team Worst](plot_driver_vs_team_worst.png)
+
+**Interpretation:**  
+Zeigt Fahrer, die im Vergleich zur Team-Pace deutlich langsamer sind.  
+Kann auf Anfängerfehler, Setup-Schwierigkeiten oder fehlende Konstanz hinweisen.
+
+---
+
+## 12. Heatmap – Aktuellste Saison (Startplatz vs Endplatz)
+![Heatmap zuletzt Saison](plot_heatmap_positions_latest_season.png)
+
+**Interpretation:**  
+Visualisiert die Korrelation zwischen Start- und Endposition.  
+Typisches Muster: Je weiter vorne der Start, desto besser die Zielposition – aber mit Überraschungen.
 
 ---
 
