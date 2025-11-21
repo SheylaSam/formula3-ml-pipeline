@@ -3,6 +3,8 @@
 
 Dieses Projekt automatisiert das Sammeln, Bereinigen und Analysieren von FIA Formel 3 Renndaten. Die Pipeline lädt Rennresultate über mehrere Jahre, bereitet sie konsistent auf und erstellt daraus einen ML-ready Datensatz. Alle Analysen und Diagramme in diesem Projekt wurden vollständig mit Python erstellt.
 
+[🇬🇧 English Version](README_EN.md)
+
 ---
 
 # 📂 Projektübersicht
