@@ -92,24 +92,118 @@ Final file:
 
 # 📊 Exploratory Data Analysis (EDA)
 
-After constructing the ML dataset, several visualizations were produced.
+After building the ML-ready dataset, the first visualizations were created.
 
 ---
 
 ## 1. Distribution of Race Positions
 ![Position Distribution](plot_positions_distribution.png)
 
+**Interpretation:**  
+Race positions are evenly distributed across the field.  
+There is no structural bias and all positions from 1 to 30 occur frequently, which is ideal for modeling.
+
 ---
 
-## 2. Team Performance
+## 2. Team Performance – Average Finishing Position
 ![Team Performance](plot_team_performance.png)
 
+**Interpretation:**  
+Teams like TRIDENT, PREMA and ART Grand Prix consistently perform at the top.  
+Teams such as PHM Racing or Charouz tend to finish near the back of the field.
+
 ---
 
-## 3. Fastest Drivers (Average Lap Time)
+## 3. Fastest Drivers – Average Lap Time
 ![Fastest Drivers](plot_best_drivers.png)
 
+**Interpretation:**  
+The top 20 drivers have extremely similar average lap times.  
+Several drivers from smaller teams appear surprisingly high, showing that raw pace is not always tied to team strength.
+
 ---
+
+## 4. Top Drivers by Average Race Position
+![Driver Avg Position](plot_driver_avg_position.png)
+
+**Interpretation:**  
+This plot highlights the most consistent top performers in race results.  
+Only drivers with at least 5 starts are included to avoid statistical noise.
+
+---
+
+## 5. Team DNF Rate
+![Team DNF Rate](plot_team_dnf_rate.png)
+
+**Interpretation:**  
+Some teams (e.g., Charouz, PHM) show significantly higher DNF rates.  
+Low-DNF teams gain a huge strategic advantage across a season.
+
+---
+
+## 6. Driver Consistency (Variance of Race Positions)
+![Driver Consistency](plot_driver_consistency.png)
+
+**Interpretation:**  
+Drivers with low variance are the most consistent.  
+A low variance means the driver delivers stable performance independent of track or conditions.
+
+---
+
+## 7. Driver Development Over Time
+![Driver Development](plot_driver_development.png)
+
+**Interpretation:**  
+Shows how a selected driver performs over multiple seasons.  
+Trends such as steady improvement, decline or stagnation become visible.
+
+---
+
+## 8. Team Performance Over Time
+![Team Performance Over Time](plot_team_performance_over_time.png)
+
+**Interpretation:**  
+This plot visualizes long-term trends of each team.  
+You can clearly see dominant eras, rising teams or long-term decline.
+
+---
+
+## 9. Team Position Boxplot
+![Team Position Boxplot](plot_team_position_boxplot.png)
+
+**Interpretation:**  
+The boxplot displays the distribution of finishing positions per team.  
+It highlights which teams are both strong *and consistent* versus those with highly variable results.
+
+---
+
+## 10. Driver vs Team – Best Performers
+![Driver vs Team Best](plot_driver_vs_team_best.png)
+
+**Interpretation:**  
+Shows drivers who regularly outperform their team’s average pace.  
+These drivers are often indicators of future F2 or F1 potential.
+
+---
+
+## 11. Driver vs Team – Underperformers
+![Driver vs Team Worst](plot_driver_vs_team_worst.png)
+
+**Interpretation:**  
+Displays drivers who perform significantly below the pace of their teammates.  
+This may point to inexperience, setup struggles or inconsistency.
+
+---
+
+## 12. Heatmap – Latest Season (Start Position vs Finish Position)
+![Heatmap Latest Season](plot_heatmap_positions_latest_season.png)
+
+**Interpretation:**  
+Visualizes the correlation between starting and finishing positions.  
+Expected pattern: starting further ahead usually leads to better results, with room for surprises and strong recovery drives.
+
+---
+
 
 # 🧠 Machine Learning (Next Step)
 
