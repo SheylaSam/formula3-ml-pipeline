@@ -1,0 +1,8 @@
+1. Daten_hinzufügen.py       --> 3_2019_2025_raw_results.csv
+2. driver_cleaning.py        --> 3_2019_2025_with_drivers_and_status.csv
+3. build_clean_dataset.py    --> f3_2019_2025_races_only.csv
+4. times_cleaning.py         --> f3_2019_2025_with_times.csv
+5. race_only_bereinigung.py  --> f3_2019_2025_races_only_final.csv
+6. feature_engineering.py    --> f3_2019_2025_races_features.csv
+7. explorative_analyse.py    --> .png 
+
