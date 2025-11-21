@@ -1,114 +1,161 @@
-# 🏎️ Formel 3 – Datenpipeline, Feature Engineering & Machine Learning  
-### Multi-Season Data Analysis (2019–2025)
+# 🏎️ Formel 3 Machine Learning Pipeline  
+## Multi-Season Data Analysis (2019–2025)
 
-Dieses Projekt automatisiert das Sammeln, Bereinigen und Analysieren von FIA Formel 3 Renndaten.  
-Die Pipeline lädt Rennresultate über mehrere Jahre, bereitet sie konsistent auf und erstellt daraus einen ML-ready Datensatz, der für Rennanalysen, Fahrerbewertungen und Machine-Learning-Modelle genutzt werden kann.
-
----
-
-## 📦 Projektinhalt
-
-Das Repository umfasst:
-
-- **Datenscraping** (HTML Tabellen von der offiziellen FIA-Website)
-- **Data Cleaning & Normalisierung**
-- **Feature Engineering**
-- **Explorative Datenanalyse (EDA)**
-- **Vorbereitung für Machine Learning**
-- **Plots & Grafiken zur Performance-Analyse**
+Dieses Projekt automatisiert das Sammeln, Bereinigen und Analysieren von FIA Formel 3 Renndaten. Die Pipeline lädt Rennresultate über mehrere Jahre, bereitet sie konsistent auf und erstellt daraus einen ML-ready Datensatz. Alle Analysen und Diagramme in diesem Projekt wurden vollständig mit Python erstellt.
 
 ---
 
-## 🗂️ Verwendete Dateien
+# 📂 Projektübersicht
 
-### 1. `f3_2019_2025_raw_results.csv`
-Alle Rohdaten aus FIA Tabellen, inkl. Sessions wie:
-- Standings  
-- Summary  
-- Race Tables  
-- Trainingssessions  
-
-### 2. `f3_2019_2025_races_only_final.csv`
-Nur echte Rennen:
-- ROUND1Summary  
-- ROUND2Summary  
-- ROUND3Summary  
-
-### 3. `f3_2019_2025_races_features.csv`
-Bereinigter, vollständig featurisierter Datensatz:
-- Zeitfeatures (time_s, best_lap_s, avg_lap_time_s)
-- Rundenfeatures (laps_clean, rel_laps, race_max_laps)
-- Performancefeatures (time_from_winner_s, best_lap_from_best_s)
-- Statusfeatures (finished, is_dnf usw.)
-- Team- und Fahrerstatistiken
-- Session Round Encoding
+- Datenscraping  
+- Datenbereinigung  
+- Feature Engineering  
+- Explorative Analyse  
+- Machine Learning (in Vorbereitung)  
 
 ---
 
-## ⚙️ Python Skripte
+# 📥 Datenquellen
 
-### `data_collection.py`
-Automatisches Laden aller Rennseiten basierend auf einer Liste von race_ids.  
-Extrahiert alle FIA Tabellen als DataFrame und speichert den Rohdatensatz.
+Die Daten stammen von der offiziellen FIA Formel 3 Website. Jede Rennveranstaltung ist über eine race_id abrufbar:
 
-### `data_cleaning.py`
-- Zerlegt Fahrerinformationen  
-- Filtert nur echte Rennsessions  
-- Konvertiert Zeiten in Sekunden  
-- Bereinigt Rennstatus  
-- Erstellt Race-Only Datensatz  
+https://www.fiaformula3.com/Results?raceid=1002
 
-### `feature_engineering.py`
-Berechnet zusätzliche ML-Features:
-- Siegerzeit  
-- Relative Pace  
-- Team Speed Index  
-- Driver Speed Index  
-- Top-10-Rate pro Fahrer  
-- Sessionkodierung  
-- Positionen pro Rennen  
-
-### `explorative_analysen.py`
-Generiert erste Visualisierungen:
-- Positionsverteilung  
-- Team Performance Ranking  
-- Schnellste Fahrer nach durchschnittlicher Rundenzeit  
+Wir haben die Renn-IDs für die Saisons 2019 bis 2025 gesammelt und automatisch verarbeitet.
 
 ---
 
-## 📊 Beispielplots
+# 🧹 Datenbereinigung
 
-### Verteilung der Rennpositionen
-Zeigt die typische Formel-3-Verteilung basierend auf mehreren Saisons.
+### Schritte:
+- Extraktion aller HTML-Tabellen über pandas  
+- Spaltung der Fahrerinformationen in: Name, Fahrernummer, Team, Status  
+- Entfernen irrelevanter Sessions (Trainings, Standings, Infos)  
+- Behalten nur echter Rennen: ROUND1Summary, ROUND2Summary, ROUND3Summary  
+- Konvertieren aller Zeitangaben in Sekunden  
+- Bereinigung von DNF, DNS, DSQ  
+- Erstellung eines sauberen Race-Only Datensatzes  
 
-### Team Performance
-Durchschnittliche Positionen der Teams über mehrere Jahre.
+Resultatdateien:
 
-### Fahrer Pace
-Basierend auf der durchschnittlichen Rundenzeit.
+- `f3_2019_2025_raw_results.csv`  
+- `f3_2019_2025_races_only_final.csv`
 
 ---
 
-## 🧠 Machine Learning (geplant)
+# 🧠 Feature Engineering
 
-Nächste Schritte:
-- Klassifikation: Top-10 Prediction  
+Wir haben zahlreiche Features erzeugt, die später für Machine Learning genutzt werden.
+
+### Zeit- und Performance-Features
+- time_s (Gesamtzeit in Sekunden)  
+- best_lap_s (beste Runde des Fahrers)  
+- avg_lap_time_s (Durchschnittliche Rundenzeit)  
+- winner_time_s (Schnellste Zeit im Rennen)  
+- time_from_winner_s  
+
+### Runden-Features
+- laps_clean (numerisch bereinigte Rundenzahl)  
+- race_max_laps  
+- rel_laps (gefahrene Runden relativ zur Gesamtrundenzahl)
+
+### Team- und Fahrerfeatures
+- team_speed (Durchschnittliche Pace pro Team)  
+- driver_speed (Durchschnittliche Pace pro Fahrer)  
+- driver_top10_rate (Quote der Top 10 Platzierungen)  
+- driver_vs_team (relative Pace im Vergleich zum Team)  
+- lap_vs_race_avg (Pace im Vergleich zum Rennschnitt)
+
+### Status-Flags
+- finished  
+- is_dnf  
+- is_dns  
+- is_dsq  
+
+### Session-Kodierung
+- ROUND1Summary → 1  
+- ROUND2Summary → 2  
+- ROUND3Summary → 3  
+
+Finale Datei:
+
+`f3_2019_2025_races_features.csv`
+
+---
+
+# 📊 Explorative Analyse (EDA)
+
+Nach dem Aufbau des ML-Datensatzes wurden erste Visualisierungen erstellt.
+
+---
+
+## 1. Verteilung der Rennpositionen
+![Positionsverteilung](plot_positions_distribution.png)
+
+---
+
+## 2. Team Performance
+![Team Performance](plot_team_performance.png)
+
+---
+
+## 3. Schnellste Fahrer nach durchschnittlicher Rundenzeit
+![Schnellste Fahrer](plot_best_drivers.png)
+
+---
+
+# 🧠 Machine Learning (nächster Schritt)
+
+Geplant sind:
+
+- Klassifikation: Top-10 Vorhersage  
 - Regression: Positionsvorhersage  
-- Fahrer Pace Prediction  
-- DNF Prediction  
-- Feature Importance Analysen  
+- Survival / Hazard Modelle: Wahrscheinlichkeit eines DNFs  
+- Team Ranking Modelle  
+- Feature Importance Analyse über XGBoost / Random Forest / SHAP  
 
 ---
 
-## 🔧 Installation
+# 📎 Reproduzierbarkeit
 
-### Voraussetzungen:
-- Python 3.10  
+Alle Schritte wurden vollständig mit Python realisiert:
+
 - pandas  
 - numpy  
-- matplotlib  
+- requests  
+- BeautifulSoup (optional)  
+- matplotlib / seaborn  
+- scikit-learn (für ML geplant)
 
-### Installation
+Die Python-Skripte:
 
-```bash
-pip install -r requirements.txt
+Daten_hinzufügen.py
+driver_cleaning.py
+times_cleaning.py
+race_only_bereinigung.py
+feature_engineering.py
+explorative_analyse.py
+
+
+---
+
+# 👤 Projektteam
+
+Dieses Projekt ist Teil unserer Formel-Datenanalyse (F1/F2/F3/F4).  
+Die Formel 3 dient als erstes vollständiges Beispiel, an dem wir die Pipeline entwickeln.
+
+---
+
+# ✔️ Status
+
+- Datensammlung: abgeschlossen  
+- Bereinigung: abgeschlossen  
+- Feature Engineering: abgeschlossen  
+- Explorative Analyse: abgeschlossen  
+- ML-Modelle: in Planung  
+
+---
+
+# 📌 Lizenz
+
+Nur für Studien- und Analysezwecke. Keine kommerzielle Nutzung der Originaldaten.
