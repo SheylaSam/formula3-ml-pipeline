@@ -51,10 +51,21 @@ print(example_race[["season", "race_id", "session_type",
 
 # 7. Basis Features pro Rennen
 
-# 7.1 Gewinnerzeit (nur Finisher)
-df["winner_time_s"] = df.groupby(
-    ["season", "race_id", "session_type"]
-)["time_s"].transform("min")
+# 7.1 Korrekte Rennzeit des Siegers pro Rennen (nur Position == 1)
+winners = (
+    df[df["position"] == 1]
+    .groupby(["season", "race_id", "session_type"])["time_s"]
+    .first()
+    .rename("winner_time_s")
+)
+
+# Zurück in den Haupt-Datensatz mergen
+df = df.merge(
+    winners,
+    on=["season", "race_id", "session_type"],
+    how="left"
+)
+
 
 # 7.2 Beste Rennrunde
 df["best_race_lap_s"] = df.groupby(
@@ -73,6 +84,10 @@ df["rel_laps"] = df["laps_clean"] / df["race_max_laps"]
 
 # 8.1 Zeitabstand zum Sieger
 df["time_from_winner_s"] = df["time_s"] - df["winner_time_s"]
+
+# Fahrer ohne Zieleinlauf (is_finisher == 0) sollen keinen Zeitabstand bekommen
+df.loc[df["is_finisher"] == 0, "time_from_winner_s"] = np.nan
+
 
 # 8.2 Abstand zur besten Rennrunde
 df["best_lap_from_best_s"] = df["best_lap_s"] - df["best_race_lap_s"]
@@ -141,8 +156,24 @@ print("\nSession Rounds:", df["session_round"].unique())
 # 13. Aufräumen von Hilfsspalten
 df = df.drop(columns=["is_finisher"], errors="ignore")
 
+# Zahlen sauber runden
+round_cols = [
+    "time_s", "best_lap_s", "gap_s",
+    "winner_time_s", "best_race_lap_s", "rel_laps",
+    "avg_lap_time_s", "time_from_winner_s", "team_avg_pos_season",
+    "best_lap_from_best_s", "lap_vs_race_avg", "driver_top10_rate", "race_avg_lap_time_s"
+    "team_speed", "driver_speed", "driver_vs_team"
+]
+
+for col in round_cols:
+    if col in df.columns:
+        df[col] = df[col].round(3)    # auf 3 Nachkommastellen runden
+
 # 14. Ergebnis speichern
 df.to_csv("f3_2019_2025_races_features.csv", index=False)
+
+
+
 
 print("\nFeature Engineering abgeschlossen.")
 print("Gespeichert als: f3_2019_2025_races_features.csv")
