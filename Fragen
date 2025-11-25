@@ -1,0 +1,23 @@
+Wie bin ich von über 7000 Datensätzen auf nur noch knapp 600 gekommen?
+
+Vorschlag an die anderen: Jeder macht eine Formel-Serie? + Dokumentation
+
+Alle F zusammenführen
+
+Wissensbasis --> jeder überlegt sich was in die Wissensbasis gehört und anschliessend wird dies zusammengeführt. 
+
+Formel 4 datem sind nur schwer auffindbar. Evtl noch explizit hierzu Wissensbasis?
+
+Jeder kann dann erklären, was gemacht wurde
+
+🧠 Sind die Daten zuverlässige Grundlage für Machine Learning?
+
+Ja – aber erst nach:
+
+✔️ Entfernen von Sessions mit unvollständigen Zeiten
+✔️ Vereinheitlichung von Rennen pro Jahr
+✔️ Umgang mit NaN-Werten
+✔️ Normalisierung von Features
+✔️ Optional: Hinzufügen von Wetter, Strecke, Qualifying (kann man scrapen)
+
+Danach sind sie absolut ML-ready.
