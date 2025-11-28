@@ -4,3 +4,6 @@ __pycache__
 *.pyc
 venv/
 main.py
+.DS_Store
+*/.DS_Store
+**/.DS_Store
