@@ -1,4 +1,4 @@
-Wie bin ich von über 7000 Datensätzen auf nur noch knapp 600 gekommen?
+
 
 Vorschlag an die anderen: Jeder macht eine Formel-Serie? + Dokumentation
 
@@ -21,3 +21,7 @@ Ja – aber erst nach:
 ✔️ Optional: Hinzufügen von Wetter, Strecke, Qualifying (kann man scrapen)
 
 Danach sind sie absolut ML-ready.
+
+Sheyla: 
+- Standing after Round 1 hinzufügen. Ausschlaggebend, um zu sehen was nach einer runde passiert.
+- Pitstops berechnen? evtl nach team?
